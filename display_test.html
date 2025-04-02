@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display 실습</title>
+  <!-- css 파일 import -->
+  <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+  <!-- display block -->
+  <span style="display: block; background-color: yellow;">윤혜원</span>
+  <span style="display: block; background-color: greenyellow;">이소현</span>
+
+  <!-- display inline -->
+  <!-- width : 100% 적용 안 됨 -->
+  <div style="display: inline; background-color: yellow; width: 100%;">김해원</div>
+  <div style="display: inline; background-color: greenyellow;">김유진</div>
+
+  <!-- display inline-block -->
+  <!-- width : 100% 적용됨 -->
+  <div style="display: inline-block; background-color: yellow; width: 100%;">박준희</div>
+  <div style="display: inline-block; background-color: greenyellow;">김현수</div>
+
+  <!-- display none -->
+  <div class="target" style="display: none; background-color: yellow;">김서현</div>
+  <div class="target" style="display: none; background-color: greenyellow;">김남우</div>
+
+  <div>
+    <button onclick="toggleDisplay()">display none 테스트</button>
+  </div>
+
+  <a href="postion_test.html">postion 실습으로 이동</a>
+
+  <script>
+    function toggleDisplay() {
+    const targets = document.querySelectorAll('.target');
+    targets.forEach(target => {
+      if (target.style.display === 'none') {
+        target.style.display = 'inline-block';
+      } else {
+        target.style.display = 'none';
+      }
+    });
+  }
+  </script>
+</body>
+</html>
