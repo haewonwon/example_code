@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flex-Grow 및 Flex-Shrink 테스트</title>
+    <style>
+      /* flex-grow 예제 */
+      .container {
+        display: flex;
+        border: 2px solid #333;
+        width: 600px; /* 고정 너비 */
+        margin: 20px auto;
+      }
+      .item {
+        height: 100px;
+        text-align: center;
+        line-height: 100px; /* 세로 중앙 정렬 */
+        font-size: 18px;
+        border: 1px solid #777;
+        /* 기본 flex-basis 0: 여유 공간은 flex-grow 값으로 채움 */
+        flex-basis: 0;
+      }
+      /* 각 아이템마다 다른 flex-grow 값 설정 */
+      .item1 {
+        background-color: lightblue;
+        flex-grow: 1;
+      }
+      .item2 {
+        background-color: lightcoral;
+        flex-grow: 2;
+      }
+      .item3 {
+        background-color: lightgreen;
+        flex-grow: 3;
+      }
+
+      /* flex-shrink 예제 */
+      .container-shrink {
+        display: flex;
+        border: 2px dashed #333;
+        width: 600px; /* 각 아이템의 기본 크기가 300px * 3 = 900px인 상황 */
+        margin: 20px auto;
+      }
+      .item-shrink {
+        height: 100px;
+        text-align: center;
+        line-height: 100px;
+        font-size: 18px;
+        border: 1px dashed #777;
+        /* 기본 flex-basis를 300px로 지정 */
+        flex-basis: 300px;
+      }
+      /* 각 아이템마다 다른 flex-shrink 값 설정 */
+      .shrink1 {
+        background-color: peachpuff;
+        flex-shrink: 1;
+      }
+      .shrink2 {
+        background-color: palevioletred;
+        flex-shrink: 2;
+      }
+      .shrink3 {
+        background-color: lightseagreen;
+        flex-shrink: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- flex-grow 예제: 여유 공간 분배 -->
+    <div class="container">
+      <div class="item item1">flex-grow: 1</div>
+      <div class="item item2">flex-grow: 2</div>
+      <div class="item item3">flex-grow: 3</div>
+    </div>
+
+    <!-- flex-shrink 예제: 부족한 공간에서 줄어듦 -->
+    <div class="container-shrink">
+      <div class="item-shrink shrink1">flex-shrink: 1</div>
+      <div class="item-shrink shrink2">flex-shrink: 2</div>
+      <div class="item-shrink shrink3">flex-shrink: 3</div>
+    </div>
+  </body>
+</html>

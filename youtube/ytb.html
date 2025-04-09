@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 리액트 문법을 담은 라이브러리 -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 리액트 돔 라이브러리 (컴포넌트를 랜더링해주는 역할, virtual dom 역할) -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel 라이브러리 -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="ytb.json" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="ytb(2).css">
+</head>
+<body>
+
+    <!-- 최고 부모 -->
+    <div id="root"></div>
+
+    <!-- header <button> Component
+        const HeaderButton = (props) => {
+            const { src, className, ButtonId, ImgId } = props
+
+            return (
+                <button id = {ButtonId}>
+                    <img
+                        src = {src}
+                        className = "h-icon"
+                        id = {ImgId}
+                    />
+                </button>
+            )
+        } -->
+
+    <!-- 이름 : navElement, mainElement
+    navComponent, wideNavComponent -->
+
+    <!-- 이벤트 델리게이션 기법 (이벤트 관리하기 위해서)
+    nav button -> Component 이벤트 등록 X, state 만들지 않음, 중복되는 요소를 제거하기 위해, 출력만
+    nav component -> Container state, event -->
+
+    <!-- Container 에서 index, id (이름) 를 Component에 내려줌 nav_index
+    Component에서는 받은 id 앞에 태그 이름을 추가해 id를 생성함 button_nav_index -->
+
+    <script type="text/babel">
+
+        // nav <button> Component
+        const NavButton = (props) => {
+            const { id, src, title, className } = props
+
+            // const sectionMouseEnterEvent = () => {
+            //     document.getElementById(`nav_icon${id}`).style.borderRadius = "10px"
+            //     document.getElementById(`nav_icon${id}`).style.backgroundColor = "#dbdcdb"
+            // }
+
+            // const sectionMouseLeaveEvent = () => {
+            //     document.getElementById(`nav_icon${id}`).style.borderRadius = "0px"
+            //     document.getElementById(`nav_icon${id}`).style.backgroundColor = "#ffffff"
+            // }
+
+            // nav, new nav 가 둘 다 출력됨 아이디가 같기에 한쪽만 css 적용
+            // 아이디를 부모에서 index만 주는 게 아니라 string까지 준다
+
+            // console.log(id)
+
+            const [buttonStyle, changeBtnStyle] = React.useState({
+                borderRadius: '0px',
+                backgroundColor: '#ffffff'
+            })
+
+            // console.log(buttonStyle)
+            // console.log(changeBtnStyle)
+
+            const navMouseEnterEvent = () => {
+                changeBtnStyle({
+                    borderRadius: '10px',
+                    backgroundColor: '#dbdcdb'
+                })
+            }
+
+            const navMouseLeaveEvent = () => {
+                changeBtnStyle({
+                    borderRadius: '0px',
+                    backgroundColor: '#ffffff'
+                })
+            }
+
+            // style을 직접 널지 않음
+            // state를 잘못 씀
+            // css class 를 만들어서 state 값애 따라서 출력
+            // 이벤트에서는 정확한 수치를 넣지 않음 => 리액트가 추구하는 바
+
+            // 이벤트 델리게이션 위치
+            // 이벤트를 nav에 위임해야 함
+            // useState끼리는 값을 공유하지 않음
+
+            return (
+                <div id={`nav_icon${id}`} className={className} onMouseEnter={navMouseEnterEvent} onMouseLeave={navMouseLeaveEvent} style={buttonStyle}>
+                    <button><img src={src} className="n-icon"/></button>
+                    <p>{title}</p>
+                </div>
+            )
+        }
+
+        // <nav> Component
+        const NavComponent = () => {
+
+            const navData = JSON.parse(JSON.stringify(navDataSet))
+            const [data, setData] = React.useState([])
+
+            React.useEffect(() => {
+                setData(navData)
+            }, [])
+
+            return (
+                <nav id="nav_component">
+                    {
+                        data.map ((element, navIndex) => <NavButton id={navIndex} src={element.src} title={element.title} className={element.className} />)
+                    }
+                </nav>
+            )
+        }
+
+        // new <nav> Component
+        const NewNavComponent = () => {
+
+            const newNavData = JSON.parse(JSON.stringify(newNavDataSet))
+            const [data, setData] = React.useState([])
+
+            React.useEffect(() => {
+                setData(newNavData)
+            }, [])
+
+            return (
+                <nav id="new_nav_component">
+                    {
+                        data.map((element, navIndex) => <NavButton id={navIndex} src={element.src} title={element.title} className={element.className} />)
+                    }
+                </nav>
+            )
+        }
+
+        // <header> Component
+        const HeaderComponent = () => {
+
+            const [navVisible, setNavVisible] = React.useState(false)
+            // isNavOpened
+
+            const menuBtnClickEvent = (e) => {
+                switch(e.target.id) {
+                    case "menuicon": setNavVisible(!navVisible)
+                }
+            }
+
+            return (
+                <>
+                <header onClick={menuBtnClickEvent}>
+                    <div id="start">
+                        <button><img src="img/www.youtube.com_ (6).png" id="menuicon" className="h-icon" /></button>
+                        <button><img src="img/www.youtube.com_ (7).png" id="ytbicon" className="h-icon" /></button>
+                    </div>
+                    <div id="center">
+                        <input id="search" type="text" placeholder="검색" />
+                        <button id="searchicon"><img src="img/www.youtube.com_channel_UCXteMTpHAvyDP05G0QULuZA (1).png" className="h-icon" /></button>
+                        <button><img src="img/www.youtube.com_channel_UCXteMTpHAvyDP05G0QULuZA (2).png" id="micicon" className="h-icon" /></button>
+                    </div>
+                    <div id="end">
+                        <button><img src="img/www.youtube.com_channel_UCXteMTpHAvyDP05G0QULuZA (3).png" className="h-icon" /></button>
+                        <button><img src="img/www.youtube.com_channel_UCXteMTpHAvyDP05G0QULuZA (5).png" className="h-icon" /></button>
+                        <button><img src="img/channels4_profile.jpg" id="pf-icon" className="h-icon" /></button>
+                    </div>
+                </header>
+                {navVisible && <NewNavComponent />}
+                </>
+            )
+            }
+
+        // main <section> Component
+        const MainSection = (props) => {
+            const { id, data: {thumbnailSrc, profileSrc, titles, youtubers, views, dates} } = props
+            // const { thumbnailSrc, profileSrc, titles, youtubers, views, dates } = props.data
+            // object props tip 부모에서 자식으로 각각을 props해서 보내줌
+
+            const sectionClickEvent = (e) => {
+                const targetId = e.target.id
+
+                switch (targetId) {
+                    case `thumbnail${id}`:
+                    case "data":
+                    case "info":
+                    case "titles":
+                    case "views":
+                    case "dates":
+                        location.href = 'https://youtu.be/RkCsWzljWEM?si=_nqPyzM0nv2eyhXQ'
+                        break
+                    case "profile_img":
+                    case "youtubers":
+                        location.href = 'https://www.youtube.com/@SilicaGel'
+                        break
+                }
+            }
+
+            // console.log(sectionClickEvent)
+
+            // const sectionMouseEnterEvent = (e) => {
+            //     document.getElementById(`thumbnail${id}`).style.borderRadius = "0px"
+            // }
+
+            // const sectionMouseLeaveEvent = (e) => {
+            //     document.getElementById(`thumbnail${id}`).style.borderRadius = "20px"
+            // }
+
+            const [videoStyle, changeVideoStyle] = React.useState({
+                borderRadius: '20px'
+            })
+
+            const videoMouseEnterEvent = (e) => {
+                // console.log(e.target.id)
+                // switch (e.target.id) {
+                //     case `thumbnail${id}`:
+                //         changeVideoStyle({borderRadius: '0px'})
+                //         break
+                // }
+                changeVideoStyle({borderRadius: '0px'})
+            }
+
+            const videoMouseLeaveEvent = (e) => {
+                // switch (e.target.id) {
+                //     case `thumbnail${id}`:
+                //         changeVideoStyle({borderRadius: '20px'})
+                //         break
+                // }
+                changeVideoStyle({borderRadius: '20px'})
+            }
+
+            return (
+                <section className="video" onClick={sectionClickEvent} onMouseEnter={videoMouseEnterEvent} onMouseLeave={videoMouseLeaveEvent}>
+                    <img id={`thumbnail${id}`} className="pics" src={thumbnailSrc} style={videoStyle}/>
+                    <div id="data" className="data">
+                        <img id="profile_img" src={profileSrc} className="p-pic" />
+                        <div id="info" className="info">
+                            <p id="titles" className="titles">{titles}</p>
+                            <p id="youtubers" className="youtubers">{youtubers}</p>
+                            <span id="views" className="views">{views}</span><span id="dates" className="dates">{dates}</span>
+                        </div>
+                    </div>
+                </section>
+            )
+        }
+
+        // <main> Component
+        const MainComponent = () => {
+
+            const sectionData = JSON.parse(JSON.stringify(sectionDataSet))
+            const [data, setData] = React.useState([])
+
+            React.useEffect(() => {
+                setData(sectionData)
+            }, [])
+
+            return (
+                <main>
+                    {
+                        data.map((element, mainIndex) =>
+                            <MainSection
+                                id={mainIndex}
+                                data={element}
+                            />
+                        )
+                    }
+                </main>
+            )
+        }
+
+        // container Component (각각의 컴포넌트를 담는 컴포넌트)
+        const ContainerComponent = () => {
+
+            return (
+                <React.Fragment>
+                    <HeaderComponent />
+                    <NavComponent />
+                    <MainComponent />
+                </React.Fragment>
+            )
+        }
+
+        // App (root에 렌더링 시키는 함수)
+        const App = () => {
+            const root = document.getElementById("root")
+            ReactDOM.createRoot(root).render(<ContainerComponent />)
+        }
+
+        // App 실행
+        window.onload = () => {
+            App()
+        }
+
+    </script>
+
+    <!-- <header>
+        <div id="start">
+            <button><img src="www.youtube.com_ (6).png" class="h-icon"></button>
+            <button><img src="www.youtube.com_ (7).png" id="ytbicon" class="h-icon"></button>
+        </div>
+        <div id="center">
+            <input id="search" type="text" placeholder="검색">
+            <button id="searchicon"><img src="www.youtube.com_channel_UCXteMTpHAvyDP05G0QULuZA (1).png" class="h-icon"></button>
+            <button><img src="www.youtube.com_channel_UCXteMTpHAvyDP05G0QULuZA (2).png" id="micicon" class="h-icon"></button>
+        </div>
+        <div id="end">
+            <button><img src="www.youtube.com_channel_UCXteMTpHAvyDP05G0QULuZA (3).png" class="h-icon"></button>
+            <button><img src="www.youtube.com_channel_UCXteMTpHAvyDP05G0QULuZA (5).png" class="h-icon"></button>
+            <button><img src="channels4_profile.jpg" id="pf-icon" class="h-icon"></button>
+        </div>
+    </header> -->
+    <!-- <nav>
+        <div class="navbtn">
+            <button><img src="www.youtube.com_.png" class="n-icon"></button>
+            <p>홈</p>
+        </div>
+        <div class="navbtn">
+            <button><img src="www.youtube.com_ (1).png" class="n-icon"></button>
+            <p>Shorts</p>
+        </div>
+        <div class="navbtn">
+            <button><img src="www.youtube.com_ (4).png" class="n-icon"></button>
+            <p>구독</p>
+        </div>
+        <div class="navbtn">
+            <button><img src="www.youtube.com_(8).png" id="n-icon4" class="n-icon"></button>
+            <p>보관함</p>
+        </div>
+    </nav> -->
+    <!-- <main>
+
+        <section class="video"> 
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+        <section class="video">
+            <img class="pics" src="hqdefault.jpg">
+            <div class="data">
+                <img src="channels4_profile (2).jpg" class="p-pic">
+                <div class="info">
+                    <p class="titles">실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]</p>
+                    <p class="youtubers">Silica Gel 실리카겔</p>
+                    <span class="views">3만회</span><span class="dates">2개월 전</span>
+                </div>
+            </div>
+        </section>
+
+    </main> -->
+
+    <!-- <script src="ytb.js"></script> -->
+</body>
+</html>

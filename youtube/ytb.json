@@ -1,0 +1,195 @@
+navDataSet = [
+    {
+        "className" : "originBtn",
+        "src" : "img/www.youtube.com_.png",
+        "title" : "홈"
+    },
+    {
+        "className" : "originBtn",
+        "src" : "img/www.youtube.com_ (1).png",
+        "title" : "Shorts"
+    },
+    {
+        "className" : "originBtn",
+        "src" : "img/www.youtube.com_ (4).png",
+        "title" : "구독"
+    },
+    {
+        "className" : "originBtn",
+        "src" : "img/www.youtube.com_(8).png",
+        "title" : "보관함"
+    }
+],
+
+newNavDataSet = [
+    {
+        "className" : "newBtn",
+        "src" : "img/www.youtube.com_.png",
+        "title" : "홈"
+    },
+    {
+        "className" : "newBtn",
+        "src" : "img/www.youtube.com_ (1).png",
+        "title" : "Shorts"
+    },
+    {
+        "className" : "newBtn",
+        "src" : "img/www.youtube.com_ (4).png",
+        "title" : "구독"
+    },
+    {
+        "className" : "newBtn",
+        "src" : "img/www.youtube.com_(8).png",
+        "title" : "보관함"
+    }
+],
+
+sectionDataSet = [
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    },
+    {
+        "thumbnailSrc" : "img/hqdefault.jpg",
+        "profileSrc" : "img/channels4_profile (2).jpg",
+        "titles" : "실리카겔 (Silica Gel) - Realize (Unreleased) [LIVE From 2022 CDF]",
+        "youtubers" : "Silica Gel 실리카겔",
+        "views" : "3만회",
+        "dates" : "2개월 전"
+
+    }
+]
+
+// nav data 는 component 안에서
+// json 은 백엔드에서 받아오는 데이터
